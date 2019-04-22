@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/Layout2"
+    android:layout_width="350dp"
+    android:layout_height="240dp"
+    android:background="#d0cece"
+    android:gravity="center">
+
+    <ProgressBar
+        android:id="@+id/circle_progress_bar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:indeterminateDrawable="@drawable/circle_progress" />
+</LinearLayout>

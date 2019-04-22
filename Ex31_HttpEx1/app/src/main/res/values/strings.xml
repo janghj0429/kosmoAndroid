@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">Ex31_HttpEx1</string>
+    <string name="server_addr">http://192.168.0.108:8081</string>
+</resources>

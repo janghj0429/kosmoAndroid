@@ -1,0 +1,144 @@
+{
+  "project_info": {
+    "project_number": "32074663823",
+    "firebase_url": "https://mytest-janghj0429.firebaseio.com",
+    "project_id": "mytest-janghj0429",
+    "storage_bucket": "mytest-janghj0429.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:32074663823:android:fb0d951dd9f823e9",
+        "android_client_info": {
+          "package_name": "com.study.android.ex53_admobex"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "32074663823-oqc92n6d25vvs1iiepken1079uall487.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCM03AgnWLIgVC9odZUqgHLrGKbxneFpA0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "32074663823-oqc92n6d25vvs1iiepken1079uall487.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      },
+      "admob_app_id": "ca-app-pub-9277661159731390~2512778547"
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:32074663823:android:3100187d1e5501fc",
+        "android_client_info": {
+          "package_name": "com.study.android.fcm"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "32074663823-oqc92n6d25vvs1iiepken1079uall487.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCM03AgnWLIgVC9odZUqgHLrGKbxneFpA0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "32074663823-oqc92n6d25vvs1iiepken1079uall487.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:32074663823:android:895e4fb12aa8fe28",
+        "android_client_info": {
+          "package_name": "com.study.android.project01"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "32074663823-h815a5cr6rlmjjo6ur8v3kpn7r99v648.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.study.android.project01",
+            "certificate_hash": "5ad48f2449a51f050374d6844ebe0308aa5b611c"
+          }
+        },
+        {
+          "client_id": "32074663823-oqc92n6d25vvs1iiepken1079uall487.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCM03AgnWLIgVC9odZUqgHLrGKbxneFpA0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "32074663823-oqc92n6d25vvs1iiepken1079uall487.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:32074663823:android:a016fb1252416459",
+        "android_client_info": {
+          "package_name": "com.study.android.storage"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "32074663823-bghag2loo83uh10d1376votk1fhnbalj.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.study.android.storage",
+            "certificate_hash": "5ad48f2449a51f050374d6844ebe0308aa5b611c"
+          }
+        },
+        {
+          "client_id": "32074663823-oqc92n6d25vvs1iiepken1079uall487.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCM03AgnWLIgVC9odZUqgHLrGKbxneFpA0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "32074663823-oqc92n6d25vvs1iiepken1079uall487.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

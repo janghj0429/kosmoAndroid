@@ -57,11 +57,30 @@ public class MainActivity extends AppCompatActivity {
         textView.setText(editText.getText());
     }
 
-
     //버튼5
     //새창 띄우기
     public void onBtn5Clicked(View v){
         Intent intent = new Intent(getApplicationContext(), NewActivity.class);
-        startActivity(intent);
+        intent.putExtra("CustomerName", "홍길동");
+        //startActivity(intent);
+        startActivityForResult(intent, 1);//1대신에 상수를 넣으면 좋다.
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data){
+        super.onActivityResult(requestCode, resultCode, data);
+
+        Log.d(TAG, "콜백 함수 호출됨");
+
+        if(requestCode == 1 && resultCode == 10){
+            String sData = "";
+            String str = "OnActivityResult() called : " +
+                    requestCode + ":" + resultCode;
+
+            sData = data.getStringExtra("BackData");
+            str = str + ":" + sData;
+
+            Toast.makeText(getApplicationContext(), str, Toast.LENGTH_SHORT).show();
+        }
     }
 }
