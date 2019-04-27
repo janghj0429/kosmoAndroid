@@ -68,7 +68,7 @@ public class SingerAdapter extends RecyclerView.Adapter<SingerAdapter.SingerItem
 
     //Adapter의 특정위치 (position)에 있는 데이터를 보여줘야 할때 호출됩니다.
     @Override
-    public void onBindViewHolder(@NonNull SingerItemViewHolder viewHolder, int position){
+    public void onBindViewHolder(@NonNull SingerItemViewHolder viewHolder,int position){
         viewHolder.textView1.setText(items.get(position).getName());
         viewHolder.textView2.setText(items.get(position).getAge());
         viewHolder.imageView1.setImageResource(items.get(position).getResId());

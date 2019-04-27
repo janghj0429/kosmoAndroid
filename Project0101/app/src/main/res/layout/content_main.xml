@@ -16,33 +16,36 @@
     <android.support.design.widget.TabLayout
         android:id="@+id/tabMenu"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0"
+        app:tabBackground="@color/colorPrimary">
 
         <android.support.design.widget.TabItem
             android:id="@+id/tab1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Monday" />
+            android:text="BOARD" />
 
         <android.support.design.widget.TabItem
             android:id="@+id/tab2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Tuesday" />
+            android:text="SEARCH" />
 
         <android.support.design.widget.TabItem
             android:id="@+id/tab3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Wednesday" />
+            android:text="MAP" />
 
         <android.support.design.widget.TabItem
             android:id="@+id/tab4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Tab5" />
+            android:text="ETC" />
     </android.support.design.widget.TabLayout>
 </android.support.constraint.ConstraintLayout>

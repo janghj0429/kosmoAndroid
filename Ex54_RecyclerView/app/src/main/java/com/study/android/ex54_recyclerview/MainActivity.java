@@ -33,6 +33,10 @@ public class MainActivity extends AppCompatActivity {
         SingerItem item6 = new SingerItem("김유신3", "30", R.drawable.face3);
         adapter.addItem(item6);
 
+        SingerItem item7 = new SingerItem("김유신3", "30", R.drawable.face3);
+        adapter.addItem(item6);
+
+
         mRecyclerView = findViewById(R.id.recyclerView1);
         mRecyclerView.setAdapter(adapter);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
