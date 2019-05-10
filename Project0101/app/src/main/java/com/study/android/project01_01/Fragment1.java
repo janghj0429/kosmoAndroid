@@ -24,6 +24,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.ArrayList;
 
 public class Fragment1 extends Fragment {
     private static final String TAG = "lecture";
@@ -33,48 +34,81 @@ public class Fragment1 extends Fragment {
     String cityName;
     String key;
 
-    WeatherHandler handler;
+    Handler handler;
 
+    TextView textView0;
     TextView textView1;
     TextView textView2;
     TextView textView3;
-    TextView textView4;
+
+    String[] city = {"Seoul", "Daejeon", "Daegu", "Busan", "Kwangju","Incheon",
+            "Ulsan", "Sejong"};
+    TextView[] textViews = new TextView[4];
+    Integer[] textViewIds = {R.id.textView0, R.id.textView1, R.id.textView2, R.id.textView3};
+
+    ArrayList<String> adapter = new ArrayList<>();
+
     @Override
     public View onCreateView(final LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         StrictMode.enableDefaults();
-        ViewGroup rootView =
+        final ViewGroup rootView =
                 (ViewGroup)inflater.inflate(R.layout.fragment_fragment1, container, false);
 
-        handler = new WeatherHandler();
-
-        textView1 = rootView.findViewById(R.id.textView1);
-        textView2 = rootView.findViewById(R.id.textView2);
-        textView3 = rootView.findViewById(R.id.textView3);
-        textView4 = rootView.findViewById(R.id.textView4);
+        handler = new Handler();
 
         strUrl = "https://api.openweathermap.org/data/2.5/weather?q=";
-        key = "&appid=2683694ec56def1ca521698e198f8714";
+        key = "&unit=metric&appid=2683694ec56def1ca521698e198f8714";
 
-        cityName = "Seoul";
-
-        strUrl = strUrl + cityName + key;
-
-        WeatherThread weatherThread = new WeatherThread();
-        weatherThread.start();
+//        WeatherThread weatherThread = new WeatherThread();
+//        weatherThread.start();
         //String cityID = "id=1835848";//서울
-//        Button button = rootView.findViewById(R.id.btnSeoul);
-//        button.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                cityID = "id=1835848";//서울
-//                strUrl = strUrl + cityID + key;
-//                Log.d(TAG, "fff111" + strUrl);
-//                Intent intent = new Intent(getActivity(), Weather.class);
-//                intent.putExtra("strUrl" , strUrl);
-//                startActivity(intent);
-//            }
-//        });
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+//                for(int i=0; i<textViewIds.length; i++){
+//                    textViews[i] = rootView.findViewById(textViewIds[i]);
+//                    cityName = city[i];
+//                    strUrl = strUrl + cityName + key;
+//                }
+                TrafficStats.setThreadStatsTag(THREAD_ID);
+                String receiveMsg;
+                Log.d(TAG, "11");
+                for(int i=0; i<city.length; i++){
+                    cityName = city[i];
+                    strUrl = strUrl + cityName + key;
+                    try{
+                        URL url = new URL(strUrl);
+
+                        HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+                        //onn.setConnectTimeout(10000);
+                        //conn.set
+                        InputStream is = url.openStream();
+                        BufferedReader rd = new BufferedReader(new InputStreamReader(conn.getInputStream(), "UTF-8"));
+                        String data;
+                        StringBuffer buffer = new StringBuffer();
+                        while ((data = rd.readLine()) != null) {
+                            buffer.append(data);
+                        }
+                        receiveMsg = buffer.toString();
+                        Log.d(TAG, "receive" + receiveMsg);
+                        handler.post(new Runnable() {
+                            @Override
+                            public void run() {
+                                for(int i=0; i<textViewIds.length; i++) {
+                                    textViews[i] = rootView.findViewById(textViewIds[i]);
+
+                                }
+                            }
+                        });
+                    }catch (Exception e){
+                        Log.d(TAG, "22");
+                        e.printStackTrace();
+                    }
+                }
+            }
+        }).start();
+
         return rootView;
     }
 
@@ -82,26 +116,39 @@ public class Fragment1 extends Fragment {
         public void run() {
             TrafficStats.setThreadStatsTag(THREAD_ID);
             String receiveMsg;
+            Log.d(TAG, "1");
             try {
-                URL url = new URL(strUrl);
+                for(int i=0; i<city.length; i++){
+                    strUrl = strUrl + city[i] + key;
+                    URL url = new URL(strUrl);
 
-                HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-                //onn.setConnectTimeout(10000);
-                //conn.set
-                InputStream is = url.openStream();
-                BufferedReader rd = new BufferedReader(new InputStreamReader(conn.getInputStream(), "UTF-8"));
-                String data;
-                StringBuffer buffer = new StringBuffer();
-                while ((data = rd.readLine()) != null) {
-                    buffer.append(data);
+                    HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+                    //onn.setConnectTimeout(10000);
+                    //conn.set
+                    InputStream is = url.openStream();
+                    BufferedReader rd = new BufferedReader(new InputStreamReader(conn.getInputStream(), "UTF-8"));
+                    String data;
+                    StringBuffer buffer = new StringBuffer();
+                    while ((data = rd.readLine()) != null) {
+                        buffer.append(data);
+                    }
+                    receiveMsg = buffer.toString();
+                    Log.d(TAG, "receive" + receiveMsg);
+                    JSONObject jsonObject = new JSONObject(receiveMsg);
+                    JSONArray weatherArray = jsonObject.getJSONArray("weather");
+                    String weather = weatherArray.getJSONObject(0).getString("main");
+                    JSONObject mainObject = jsonObject.getJSONObject("main");
+                    String temp = mainObject.getString("temp");
+                    String humidity = mainObject.getString("humidity");
+                    Log.d(TAG,"날씨 " + weather+temp+humidity);
+                    handler.post(new Runnable() {
+                        @Override
+                        public void run() {
+
+                        }
+                    });
                 }
-                receiveMsg = buffer.toString();
-                Log.d(TAG, "receive" + receiveMsg);
-                Message msg = handler.obtainMessage();
-                Bundle bundle = new Bundle();
-                bundle.putString("data", receiveMsg);
-                msg.setData(bundle);
-                handler.sendMessage(msg);
+
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -121,9 +168,19 @@ public class Fragment1 extends Fragment {
                 JSONObject mainObject = jsonObject.getJSONObject("main");
                 String temp = mainObject.getString("temp");
                 String humidity = mainObject.getString("humidity");
-                Log.d(TAG, "날씨 : " + weather);
-                textView1.setText("날씨 : " + weather);
-                textView2.setText("습도 : " + humidity);
+                for(int i=0; i<8; i++){
+
+                }
+//                if(city.equals("Seoul")){
+//                    Log.d(TAG, "날씨 : " + weather);
+//                    Log.d(TAG, "온도" + temp);
+//                    textView0.setText("날씨 : " + weather);
+//                    textView1.setText("온도 : " + temp + " 도");
+//                }else if(city.equals("Daejeon")){
+//                    textView2.setText("날씨 : " + weather);
+//                    textView3.setText("온도 : " + temp + " 도");
+//                }
+
 //                for(int i=0; i<listArray.length(); i++){
 //                    try{
 //                        JSONObject mainObject = listArray[i].getJSONObject("main");
@@ -135,7 +192,6 @@ public class Fragment1 extends Fragment {
             }catch (Exception e){
                 e.printStackTrace();
             }
-
         }
     }
 }
